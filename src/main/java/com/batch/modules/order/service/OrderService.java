@@ -15,11 +15,10 @@ public class OrderService {
 
     public void save(){
         Random rand = new Random();
-        int price = rand.nextInt(26);
-        price+=65;
+        int price = rand.nextInt(26) + 65;
         char name = (char)price;
-        int cnt = rand.nextInt(10) + 1;
         price*=100;
+        int cnt = rand.nextInt(10) + 1;
         String store="";
         if(price<7500){
             store="suyeong";
