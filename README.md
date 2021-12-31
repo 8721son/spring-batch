@@ -20,7 +20,7 @@ TB_BATCH
     `store` VARCHAR(100) NULL COMMENT '가게 이름',
     `name` VARCHAR(100) NULL COMMENT '상품 이름',
     `total_price` int(11) unsigned NULL COMMENT '총금액',
-    `product_count` int(11) unsigned NULL COMMENT '총수량',
+    `total_count` int(11) unsigned NULL COMMENT '총수량',
 	
     PRIMARY KEY(`idx`)
     ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
@@ -38,7 +38,7 @@ STORED_PROCEDURE (더미데이터 생성용)
     DECLARE cnt INT DEFAULT 0;
 
  	WHILE i <= 200000 DO
- 		SET pr = 65 + rand()*26;
+ 		SET pr = 65 + rand()*25;
  		SET na = CHR(pr);
  		SET pr = pr * 100;
  		SET cnt = (rand()*9)+1;
