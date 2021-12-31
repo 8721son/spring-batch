@@ -1,6 +1,7 @@
 package com.batch.modules.batch.domain.entity;
 
 
+import com.batch.modules.batch.domain.dto.response.BatchResultDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,4 +25,12 @@ public class BatchEntity {
     private Long totalPrice;
     private Long totalCount;
 
+    public BatchResultDTO toDTO() {
+        return BatchResultDTO.builder()
+                .store(store)
+                .productName(name)
+                .totalCount(totalCount)
+                .totalPrice(totalPrice)
+                .build();
+    }
 }

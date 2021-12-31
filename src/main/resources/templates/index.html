@@ -14,19 +14,18 @@
 
 </header>
 
-    <table>
-        <thead>
-            <tr>가게명</tr>
-            <tr>상품명</tr>
-            <tr>총 판매수량</tr>
-            <tr>총 판매금액</tr>
-        </thead>
-        <tbody>
-            <tr>1</tr>
-            <tr>1</tr>
-            <tr>1</tr>
-            <tr>1</tr>
-        </tbody>
+    <table border="1">
+            <th>가게명</th>
+            <th>상품명</th>
+            <th>총 판매수량</th>
+            <th>총 판매금액</th>
+            <tr th:each="li : ${list}">
+                <td th:text="${li.store}"></td>
+                <td th:text="${li.productName}"></td>
+                <td th:text="${li.totalCount}"></td>
+                <td th:text="${li.totalPrice}"></td>
+
+            </tr>
     </table>
 
 </body>
