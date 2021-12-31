@@ -1,6 +1,6 @@
 package com.batch.modules.order.service;
 
-import com.batch.modules.order.dto.entity.OrderEntity;
+import com.batch.modules.order.domain.entity.OrderEntity;
 import com.batch.modules.order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,15 +1,14 @@
 package com.batch.config;
 
-import com.batch.modules.batch.entity.BatchEntity;
-import com.batch.modules.order.dto.entity.OrderEntity;
+import com.batch.modules.batch.repository.BatchRepository;
+import com.batch.modules.batch.tasklet.BatchTasklet;
+import com.batch.modules.order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.item.ItemReader;
-import org.springframework.batch.item.ItemWriter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,29 +18,25 @@ import org.springframework.context.annotation.Configuration;
 @EnableBatchProcessing
 public class JobConfig {
 
+    private final OrderRepository orderRepository;
+    private final BatchRepository batchRepository;
+
     private final JobBuilderFactory jobs;
 
     private final StepBuilderFactory steps;
 
     @Bean
     public Job job() {
-        return jobs.get("job").start(step()).build();
+        return jobs.get("job")
+                .start(step())
+                .build();
     }
 
     @Bean
     protected Step step() {
-        return steps.get("step").<OrderEntity, BatchEntity> chunk(1).reader(reader()).writer(writer()).build();
+        return steps.get("step")
+                .tasklet(new BatchTasklet(orderRepository,batchRepository))
+                .build();
     }
-
-    @Bean
-    protected ItemReader<OrderEntity> reader() {
-        return null;
-    }
-
-    @Bean
-    protected ItemWriter<BatchEntity> writer() {
-        return null;
-    }
-
 
 }
