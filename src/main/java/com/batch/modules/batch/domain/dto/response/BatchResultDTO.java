@@ -8,6 +8,6 @@ import lombok.Data;
 public class BatchResultDTO {
     private String store;
     private String productName;
-    private Long totalCount;
-    private Long totalPrice;
+    private String totalCount;
+    private String totalPrice;
 }

@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+import static com.batch.modules.utils.NumberUtil.dotNumberStrNormal;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -29,8 +31,8 @@ public class BatchEntity {
         return BatchResultDTO.builder()
                 .store(store)
                 .productName(name)
-                .totalCount(totalCount)
-                .totalPrice(totalPrice)
+                .totalCount(dotNumberStrNormal(totalCount))
+                .totalPrice(dotNumberStrNormal(totalPrice))
                 .build();
     }
 }
